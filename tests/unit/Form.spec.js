@@ -16,18 +16,17 @@ describe("Form.vue", () => {
   });
 
   it("Verify default values", () => {
-    expect(store.getters["board/getCurrentName"]).toStrictEqual(null);
-    expect(store.getters["board/getCurrentRows"]).toStrictEqual(null);
-    expect(store.getters["board/getCurrentCols"]).toStrictEqual(null);
-    expect(store.getters["board/getMinRows"]).toStrictEqual(2);
-    expect(store.getters["board/getMinCols"]).toStrictEqual(5);
+    expect(store.getters["board/getCurrentName"]).toBe(null);
+    expect(store.getters["board/getCurrentRows"]).toBe(null);
+    expect(store.getters["board/getCurrentCols"]).toBe(null);
+    expect(store.getters["board/getMinRows"]).toBe(2);
+    expect(store.getters["board/getMinCols"]).toBe(5);
   });
 
   it("Verify setting name", () => {
     const wrapper = mount(Form, { store, localVue });
     wrapper.find(".form__name").setValue("John");
     wrapper.find(".form__play").trigger("click");
-    console.log(store.state.board);
     expect(store.state.board.playerName).toBe("John");
   });
 

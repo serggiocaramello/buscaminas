@@ -1,10 +1,10 @@
-const state = {
+const state = () => ({
   playerName: null,
   rows: null,
   cols: null,
   minRows: 2,
   minCols: 5,
-};
+});
 
 const getters = {
   getCurrentName: (state) => {
