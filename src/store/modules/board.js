@@ -4,6 +4,10 @@ const state = () => ({
   cols: null,
   minRows: 2,
   minCols: 5,
+  amountMines: null,
+  rateMines: 0.2,
+  mines: [],
+  matrix: null,
 });
 
 const getters = {
@@ -31,6 +35,15 @@ const mutations = {
   },
   SET_COLS: (state, cols) => {
     cols >= state.minCols ? (state.cols = cols) : (state.cols = state.minCols);
+  },
+  SET_AMOUNT_MINES: (state) => {
+    state.amountMines = Math.floor(state.rows * state.cols * state.rateMines);
+  },
+  SET_MINES: (state, mines) => {
+    state.mines.push(mines);
+  },
+  SET_MATRIX: (state, matrix) => {
+    state.matrix = matrix;
   },
 };
 

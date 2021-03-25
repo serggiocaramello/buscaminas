@@ -21,6 +21,7 @@ describe("Form.vue", () => {
     expect(store.getters["board/getCurrentCols"]).toBe(null);
     expect(store.getters["board/getMinRows"]).toBe(2);
     expect(store.getters["board/getMinCols"]).toBe(5);
+    expect(store.state.board.amountMines).toBe(null);
   });
 
   it("Verify setting name", () => {
@@ -56,5 +57,19 @@ describe("Form.vue", () => {
     wrapper.find(".form__numberCols").setValue(8);
     wrapper.find(".form__play").trigger("click");
     expect(store.getters["board/getCurrentCols"]).toBe(8);
+  });
+  it("Verify min amount of mines", () => {
+    const wrapper = mount(Form, { store, localVue });
+    wrapper.find(".form__numberRows").setValue(0);
+    wrapper.find(".form__numberCols").setValue(0);
+    wrapper.find(".form__play").trigger("click");
+    expect(store.state.board.amountMines).toBe(2);
+  });
+  it("Verify amount of mines", () => {
+    const wrapper = mount(Form, { store, localVue });
+    wrapper.find(".form__numberRows").setValue(5);
+    wrapper.find(".form__numberCols").setValue(10);
+    wrapper.find(".form__play").trigger("click");
+    expect(store.state.board.amountMines).toBe(10);
   });
 });
